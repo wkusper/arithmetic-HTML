@@ -1,0 +1,19 @@
+<html>
+    <head>
+
+    </head>
+        <title>Arithmetic</title>
+        <h1>Arithmetic</h1>
+    <body>
+        <input type="number" id="num1" name="number 1">
+        <label>+</label>
+        <input type="number" id="num2" name="number 2" >
+        <button type="=" id="addButton" name="=" onClick="add()">=</button>
+        <label id="sum">0</label>
+        <script>
+            function add() {
+                document.getElementById("sum").innerHTML = Number(document.getElementById("num1").value) + Number(document.getElementById("num2").value)
+            }
+        </script>
+    </body>
+</html>
