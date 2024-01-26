@@ -11,8 +11,14 @@
         <button type="=" id="addButton" name="=" onClick="add()">=</button>
         <label id="sum">0</label>
         <script>
-            function add() {
-                document.getElementById("sum").innerHTML = Number(document.getElementById("num1").value) + Number(document.getElementById("num2").value)
+            async function add() {
+                const n1 = document.getElementById("num1");
+                const n2 = document.getElementById("num2");
+                let n = n1;
+                let m = n2;
+                const response = await fetch("http://localhost:3000/add/" + n + "/" + m);
+                const sum = await response.json();
+                document.getElementById("sum").innerText = sum;
             }
         </script>
     </body>
