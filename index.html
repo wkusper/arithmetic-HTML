@@ -7,7 +7,7 @@
     <style>
         .column {
            float: left;
-           width: 50%;
+           width: 33.33%;
            padding: 10px;
            box-sizing: border-box;
           
@@ -21,6 +21,15 @@
 </head>
 <body>
     <div class="row">
+        <div class="column">
+            <section>
+                <h2>Caesar Cipher</h2>                
+                <label>Text to encode:</label>
+                <input id="textToEncode"/>
+                <button onclick="caesarCipher()">Encode</button>
+                <label id="cipherResult"></label>  
+            </section>           
+        </div>
         <div class="column">          
            <section>
             <h2>Arithmetic</h2>
@@ -57,9 +66,25 @@
         async function isPrime() {
             const numberToTest = document.getElementById("numberToTest");            
             let n = numberToTest.value;            
-            const response = await fetch("???" + n);
+            const response = await fetch("https://primes-service.onrender.com/primes/" + n);
             const result = await response.json();
             document.getElementById("primeCheckResult").innerText = result;
+        }
+
+        function caesarCipher() {
+            const textToEncode = document.getElementById("textToEncode").value;
+            let encodedText = '';
+            for (let i = 0; i < textToEncode.length; i++) {
+                let charCode = textToEncode.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    encodedText += String.fromCharCode((charCode - 65 + 3) % 26 + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    encodedText += String.fromCharCode((charCode - 97 + 3) % 26 + 97);
+                } else {
+                    encodedText += textToEncode[i];
+                }
+            }
+            document.getElementById("cipherResult").innerText = encodedText;
         }
     </script>
 </body>
